@@ -24,30 +24,30 @@ export default function TicTacToe() {
     
 
     if (position.includes(1) && position.includes(2) && position.includes(3)) {
-      //
+      
       setWinningComb([1, 2, 3])
       return str+type;
     }
     if (position.includes(1) && position.includes(4) && position.includes(7)) {
-      //
+      
       setWinningComb([1, 4, 7])
 
       return str+type;
     }
     if (position.includes(1) && position.includes(5) && position.includes(9)) {
-      //
+      
       setWinningComb([1, 5, 9])
 
       return str+type;
     }
     if (position.includes(2) && position.includes(5) && position.includes(8)) {
-      //
+      
       setWinningComb([2, 5, 8])
 
       return;
     }
     if (position.includes(3) && position.includes(5) && position.includes(7)) {
-      //
+      
       setWinningComb([3, 5, 7])
 
       return str+type;
@@ -122,11 +122,7 @@ export default function TicTacToe() {
        currentWinner =validate(newY, "B");
         }
       }
-      // setPostion((position) => {
-      //   const updated = [...position];
-      //   updated[id - 1] = newCount;
-      //   return updated;
-      // })
+    
       setWinner(currentWinner)
       return newCount;
     });
@@ -143,14 +139,14 @@ export default function TicTacToe() {
   return (
     <div>
       <h2>{winner !== null ? winner : count === 9 ? "Match Drawn " : null}</h2>
-      <h2>{isAI?"Playing Against AI":null}</h2>
+      <h2>{isAI?"Playing Against AI":"Playing 1 vs 1"}</h2>
       <h2>{count === 0 ?  "Match Start ": null}</h2>
       <h2>{count > 0 && winner === null ? count % 2 == 0 ? "Player A turn":"Player B turn":null}</h2>
 
       <div className="outer-div">
         <div className="tictac-div">
           {board.map((val) => (
-            <button key={val} style={{ backgroundColor: (winner !== null && winningComb.includes(val)) ? "green" : "white" }}
+            <button key={val} style={{ backgroundColor: (winner !== null && winningComb.includes(val)) ? "green" : "white",color:"black" }}
               d={val} onClick={() => handleClick(val)}
               disabled={winner !== null || xPosition.includes(val) || yPosition.includes(val)}>
               {xPosition.includes(val) ? "X" : yPosition.includes(val) ? "O" : null}
@@ -159,8 +155,8 @@ export default function TicTacToe() {
 
         </div>
       </div>
-      <button className="play-again" onClick={() => resetBoard()}>PlayAgain</button>
-      <button className="play-again" onClick={() => playwithAI()}>Play With AI</button>
+      <button className="play-again" onClick={() => resetBoard()}>Play 1 vs 1</button>
+      <button className="play-again" onClick={() => playwithAI()}>Play Against AI</button>
 
     </div>
   );
